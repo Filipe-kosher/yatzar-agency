@@ -1,6 +1,6 @@
-# Portfólio
+# Yatzar Agency site (APENAS O HERO)
 
-> Meu portfólio, que finalmente desenvolvi com muita luta e amor ❤
+> Yatzar Agency
 
 ---
 
@@ -9,15 +9,11 @@
 - HTML5
 - CSS3  
 - JavaScript
-- Threejs
-- GSAP
-- CanvasAPI
-- GLSL
-- Font Awesome
-- Modern Normalize
+
 
 ---
 
 ## Screenshot
 
-![Screenshot do Projeto](screenshot.png)
+![Screenshot do Projeto](image.png)
+
