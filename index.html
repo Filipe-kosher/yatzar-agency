@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Yatzar Studio</title>
+  <link rel="icon" type="image/png" href="images/YATZARpreto.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: #000;
+    }
+
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: url('images/Inicial1.png') no-repeat center center/cover;
+  padding-bottom: 60px;
+}
+
+/* Escurecimento leve na imagem inteira */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Gradiente de transição no final */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: 260px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+    /* Hamburger Menu */
+    .hamburger-menu {
+      position: absolute; /* alterado */
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+    }
+
+    .hamburger-container {
+      background-color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 300ms ease;
+      cursor: pointer;
+    }
+
+    .hamburger-container:hover {
+      background-color: #e0e0e0;
+    }
+
+    .hamburger input {
+      display: none;
+    }
+
+    .hamburger svg {
+      height: 24px;
+      width: 24px;
+      transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .line {
+      fill: none;
+      stroke: black;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 3;
+      transition:
+        stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+        stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .line-top-bottom {
+      stroke-dasharray: 12 63;
+    }
+
+    .hamburger input:checked + svg {
+      transform: rotate(-45deg);
+    }
+
+    .hamburger input:checked + svg .line-top-bottom {
+      stroke-dasharray: 20 300;
+      stroke-dashoffset: -32.42;
+    }
+
+    /* Bottom Bar */
+    .bottom-bar {
+      position: absolute; /* alterado */
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .scrolldown {
+      --color: white;
+      --sizeX: 20px;
+      --sizeY: 35px;
+      width: var(--sizeX);
+      height: var(--sizeY);
+      border: calc(var(--sizeX) / 10) solid var(--color);
+      border-radius: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      box-sizing: border-box;
+      pointer-events: all;
+    }
+
+    .scrolldown::before {
+      content: "";
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      margin-left: -2px;
+      background-color: var(--color);
+      border-radius: 100%;
+      animation: scrolldown-anim 2s infinite;
+    }
+
+    @keyframes scrolldown-anim {
+      0% { opacity: 0; height: 4px; }
+      40% { opacity: 1; height: 7px; }
+      80% { transform: translateY(15px); height: 7px; opacity: 0; }
+      100% { height: 3px; opacity: 0; }
+    }
+
+    .chevrons {
+      padding-top: 3px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .chevrondown {
+      border: solid var(--color);
+      border-width: 0 2px 2px 0;
+      width: 6px;
+      height: 6px;
+      transform: rotate(45deg);
+      margin: 2px 0;
+    }
+
+    .chevrondown:nth-child(odd) {
+      animation: pulse54012 500ms ease infinite alternate;
+    }
+
+    .chevrondown:nth-child(even) {
+      animation: pulse54012 500ms ease infinite alternate 250ms;
+    }
+
+    @keyframes pulse54012 {
+      from { opacity: 0; }
+      to { opacity: 0.5; }
+    }
+
+    .bottom-navbar {
+      display: flex;
+      gap: 25px;
+      background: transparent;
+      pointer-events: all;
+      margin-right: 30px;
+      margin-left: auto;
+    }
+
+    .bottom-navbar a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.95em;
+      padding: 8px 0;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .bottom-navbar a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #00ffd5;
+      transition: width 0.3s ease;
+    }
+
+    .bottom-navbar a:hover {
+      color: #00ffd5;
+    }
+
+    .bottom-navbar a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .bottom-navbar {
+        gap: 15px;
+        margin-right: 0;
+      }
+      
+      .bottom-navbar a {
+        font-size: 0.9em;
+      }
+    }
+
+    /* images */
+    .logos {
+      overflow: hidden;
+      padding: 60px 0;
+      background: #000;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .logos:before,
+    .logos:after {
+      position: absolute;
+      top: 0;
+      width: 250px;
+      height: 100%;
+      content: "";
+      z-index: 2;
+    }
+
+    .logos:before {
+      left: 0;
+      background: linear-gradient(to left, rgba(0, 0, 0, 0), #000);
+    }
+
+    .logos:after {
+      right: 0;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0), #000);
+    }
+
+    .logos:hover .logos-slide {
+      animation-play-state: paused;
+    }
+
+    .logos-slide {
+      display: inline-block;
+      animation: 75s slide infinite linear;
+    }
+
+    .logos-slide img {
+      height: 50px;
+      margin: 0 40px;
+      filter: invert(1);
+    }
+
+    @keyframes slide {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hamburger-menu">
+      <div class="hamburger-container">
+        <label class="hamburger">
+          <input type="checkbox" />
+          <svg viewBox="0 0 32 32">
+            <path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+            <path class="line" d="M7 16 27 16"></path>
+          </svg>
+        </label>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <div class="scrolldown" style="--color: white">
+        <div class="chevrons">
+          <div class="chevrondown"></div>
+          <div class="chevrondown"></div>
+        </div>
+      </div>
+
+      <nav class="bottom-navbar">
+        <a href="#quem-somos">Quem somos nós</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Seção de images com fundo preto -->
+  <div class="logos">
+    <div class="logos-slide">
+      <img src="./images/3m.svg" alt="3M">
+      <img src="./images/barstool-store.svg" alt="Barstool Store">
+      <img src="./images/budweiser.svg" alt="Budweiser">
+      <img src="./images/buzzfeed.svg" alt="Buzzfeed">
+      <img src="./images/forbes.svg" alt="Forbes">
+      <img src="./images/macys.svg" alt="Macy's">
+      <img src="./images/menshealth.svg" alt="Men's Health">
+      <img src="./images/mrbeast.svg" alt="Mr. Beast">
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var copy = document.querySelector(".images-slide").cloneNode(true);
+      document.querySelector(".images").appendChild(copy);
+    });
+  </script>
+</body>
+</html>
